@@ -6,7 +6,6 @@ import deckBuilder from './utils/deckBuilder.js'
 
 const App = () => {
 
-
   //state
   const [week, changeWeek] = useState(0);
   const [deck, updateDeck] = useState(deckBuilder());
@@ -38,6 +37,8 @@ const App = () => {
     updateCard(deck[deck.length - 1]);
   }
 
+  //event handlers
+
   let handleWriting = (e) => {
     updateScrawl(e.target.value);
   }
@@ -48,13 +49,12 @@ const App = () => {
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
       <Calendar week = {week} card = {card} />
-      {/* <Log week = {week} journal = {journal}/> */}
-      <div>
-        <form>
-          <textarea value={scrawl} onChange={handleWriting}></textarea>
-          <input type="submit" onClick={advanceButton} value={week > 4 ? 'Reset' : 'Next Week'}/>
-        </form>
-      </div>
+      <Log
+        week = {week}
+        scrawl = {scrawl}
+        advanceButton={advanceButton}
+        handleWriting = {handleWriting}
+      />
     </div>
   );
 }

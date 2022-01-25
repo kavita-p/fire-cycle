@@ -1,8 +1,8 @@
 const Calendar = (props) => {
   if (props.week === 0) {
-    return 'Start';
+    return null;
   } else if (props.week > 4) {
-    return 'End';
+    return null;
   } else {
     return (
       <div>
