@@ -10,7 +10,7 @@ const Log = (props) => {
           {`Week ${props.week}`}
         </div>
         <div>
-          {`Playing ${1} of ${1}`}
+          {`Playing ${props.card.rank} of ${props.card.suit}`}
         </div>
         <form><textarea></textarea></form>
       </div>
