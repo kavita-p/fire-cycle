@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+const _ = require('underscore');
 
-function App() {
+const App = () => {
+
+
+  //build deck
+  const deckBuilder = () => {
+    let deck = [];
+    ['H', 'C', 'S', 'D'].forEach(suit => {
+      ['a', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'j', 'q', 'k'].forEach(rank => {
+        deck.push(suit + rank);
+      });
+    });
+    deck = _.shuffle(deck);
+    console.log(deck);
+    return deck;
+  }
+
+  let deck = deckBuilder();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Fire Cycle</h1>
+      <h2>A year in the peaks.</h2>
     </div>
   );
 }
