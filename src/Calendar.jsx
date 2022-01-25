@@ -1,4 +1,4 @@
-const Log = (props) => {
+const Calendar = (props) => {
   if (props.week === 0) {
     return 'Start';
   } else if (props.week > 4) {
@@ -12,10 +12,9 @@ const Log = (props) => {
         <div>
           {`Playing ${props.card.rank} of ${props.card.suit}`}
         </div>
-        <form><textarea></textarea></form>
       </div>
     );
   }
 }
 
-export default Log;
+export default Calendar;

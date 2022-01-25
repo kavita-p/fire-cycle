@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import {useState} from 'react';
-import Log from './Log.js';
+import Calendar from './Calendar.jsx';
+import Log from './Log.jsx';
 
 
 const App = () => {
@@ -40,10 +41,13 @@ const App = () => {
     <div className="App">
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
-      <Log week = {week} card = {card} />
-      <button onClick = {advanceButton}>
-        {week > 4 ? 'Reset' : 'Next Week'}
-      </button>
+      <Calendar week = {week} card = {card} />
+      <Log week = {week} />
+      <div>
+        <button onClick = {advanceButton}>
+          {week > 4 ? 'Reset' : 'Next Week'}
+        </button>
+      </div>
     </div>
   );
 }
