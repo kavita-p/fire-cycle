@@ -23,20 +23,25 @@ const App = () => {
   //control stage
   const [week, changeWeek] = useState(0);
   const [deck, updateDeck] = useState(deckBuilder());
+  const [card, updateCard] = useState(deck[deck.length - 1]);
 
-  const drawCard = () => {
-    let cards = deck.slice();
-    let card = cards.pop();
-    updateDeck(cards);
-    return card;
+  const advanceButton = () => {
+    if (week > 4) {
+      changeWeek(0);
+      updateDeck(deckBuilder());
+    } else {
+      changeWeek(week + 1);
+      updateDeck(deck.slice(0, deck.length - 1))
+    }
+    updateCard(deck[deck.length - 1]);
   }
 
   return (
     <div className="App">
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
-      <Log week = {week} card = {week > 0 ? drawCard() : undefined}/>
-      <button onClick = {() => week > 4 ? changeWeek(0) : changeWeek(week + 1)}>
+      <Log week = {week} card = {card} />
+      <button onClick = {advanceButton}>
         {week > 4 ? 'Reset' : 'Next Week'}
       </button>
     </div>
