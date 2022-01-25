@@ -1,9 +1,10 @@
+import _ from 'underscore';
 import {useState} from 'react';
-const _ = require('underscore');
+import Log from './Log.js';
+
 
 const App = () => {
 
-  //build deck
   const deckBuilder = () => {
     let deck = [];
     ['Hearts', 'Clubs', 'Spades', 'Diamonds'].forEach(suit => {
@@ -18,10 +19,10 @@ const App = () => {
     return deck;
   }
 
-  let deck = deckBuilder();
 
   //control stage
   const [week, changeWeek] = useState(0);
+  const [deck, updateDeck] = useState(deckBuilder());
   const evaluateStage = () => {
     if (week === 0) {
       return 'Start';
@@ -29,6 +30,7 @@ const App = () => {
       return 'End';
     } else {
       let card = deck.pop();
+      console.log('eval', deck.length);
       return (
         <div>
           <div>
@@ -42,6 +44,8 @@ const App = () => {
     }
   }
 
+  console.log(deck.length);
+
   return (
     <div className="App">
       <h1>Fire Cycle</h1>
@@ -49,9 +53,7 @@ const App = () => {
       <div>
         {evaluateStage(week)}
       </div>
-      <form>
-        <textarea></textarea>
-      </form>
+      <Log week = {week}/>
       <button onClick = {() => week > 4 ? changeWeek(0) : changeWeek(week + 1)}>
         {week > 4 ? 'Reset' : 'Next Week'}
       </button>
