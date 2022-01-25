@@ -10,7 +10,7 @@ const Calendar = (props) => {
           {`Week ${props.week}`}
         </div>
         <div>
-          {`Playing ${props.card.rank} of ${props.card.suit}`}
+          {`You draw the ${props.card.rank} of ${props.card.suit}`}
         </div>
       </div>
     );

@@ -1,6 +1,8 @@
 const Log = (props) => {
-  if (props.week > 4 || props.week < 1) {
+  if (props.week < 1) {
     return null;
+  } else if (props.week > 4) {
+    return
   } else {
     return (<div>
       <form>
