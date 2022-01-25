@@ -50,6 +50,9 @@ const App = () => {
       <div>
         {evaluateStage(week)}
       </div>
+      <form>
+        <textarea></textarea>
+      </form>
       <button onClick = {() => week > 4 ? changeWeek(0) : changeWeek(week + 1)}>
         {week > 4 ? 'Reset' : 'Next Week'}
       </button>
