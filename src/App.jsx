@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import Calendar from './Calendar.jsx';
-import Log from './Log.jsx';
+import Calendar from './Components/Calendar.jsx';
+import Log from './Components/Log.jsx';
 import deckBuilder from './utils/deckBuilder.js'
 
 
