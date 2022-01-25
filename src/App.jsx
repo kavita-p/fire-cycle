@@ -1,27 +1,13 @@
-import _ from 'underscore';
 import {useState} from 'react';
 import Calendar from './Calendar.jsx';
 import Log from './Log.jsx';
+import deckBuilder from './utils/deckBuilder.js'
 
 
 const App = () => {
 
-  const deckBuilder = () => {
-    let deck = [];
-    ['Hearts', 'Clubs', 'Spades', 'Diamonds'].forEach(suit => {
-      ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'].forEach(rank => {
-        deck.push({
-          suit: suit,
-          rank: rank
-        });
-      });
-    });
-    deck = _.shuffle(deck);
-    return deck;
-  }
 
-
-  //control stage
+  //state
   const [week, changeWeek] = useState(0);
   const [deck, updateDeck] = useState(deckBuilder());
   const [card, updateCard] = useState(deck[deck.length - 1]);
@@ -29,7 +15,7 @@ const App = () => {
   const [scrawl, updateScrawl] = useState('');
   const [journal, updateJournal] = useState([]);
 
-  const advanceButton = (e) => {
+  let advanceButton = (e) => {
     e.preventDefault();
 
     //update journal
@@ -52,7 +38,7 @@ const App = () => {
     updateCard(deck[deck.length - 1]);
   }
 
-  const handleWriting = (e) => {
+  let handleWriting = (e) => {
     updateScrawl(e.target.value);
   }
 
