@@ -23,16 +23,23 @@ const App = () => {
 
   //control stage
   const [week, changeWeek] = useState(0);
-
   const evaluateStage = () => {
     if (week === 0) {
       return 'Start';
-    } else if (week >= 4) {
+    } else if (week > 4) {
       return 'End';
     } else {
       let card = deck.pop();
-      return (`Week ${week} \n
-      Playing ${card.rank} of ${card.suit}`);
+      return (
+        <div>
+          <div>
+            {`Week ${week}`}
+          </div>
+          <div>
+            {`Playing ${card.rank} of ${card.suit}`}
+          </div>
+        </div>
+      );
     }
   }
 
@@ -43,8 +50,8 @@ const App = () => {
       <div>
         {evaluateStage(week)}
       </div>
-      <button onClick = {() => changeWeek(week + 1)}>
-        Next week
+      <button onClick = {() => week > 4 ? changeWeek(0) : changeWeek(week + 1)}>
+        {week > 4 ? 'Reset' : 'Next Week'}
       </button>
     </div>
   );
