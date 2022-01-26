@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Calendar from './Components/Calendar.jsx';
-import Log from './Components/Log.jsx';
+import LogBook from './Components/LogBook.jsx';
 import deckBuilder from './utils/deckBuilder.js'
 
 
@@ -18,9 +18,11 @@ const App = () => {
     e.preventDefault();
 
     //update journal
+    console.log(card);
     let newEntry = {
+      week: week,
       event: card,
-      entry: scrawl
+      log: scrawl
     }
     updateJournal([...journal, newEntry]);
     updateScrawl('');
@@ -49,9 +51,11 @@ const App = () => {
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
       <Calendar week = {week} card = {card} />
-      <Log
+      <LogBook
         week = {week}
         scrawl = {scrawl}
+        journal = {journal}
+        card = {card}
         advanceButton={advanceButton}
         handleWriting = {handleWriting}
       />
