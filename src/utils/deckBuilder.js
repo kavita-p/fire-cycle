@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-function deckBuilder () {
+const deckBuilder = () => {
   let deck = [];
   ['Hearts', 'Clubs', 'Spades', 'Diamonds'].forEach(suit => {
     ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'].forEach(rank => {

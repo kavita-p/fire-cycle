@@ -13,15 +13,12 @@ const LogBook = (props) => {
         )}
       )}
       <input type="submit" onClick={props.advanceButton} value="Reset"/>
-    </div>
-
-
-    )
+    </div>)
   } else {
     return (
       <div>
         <form>
-          <textarea value={props.scrawl} onChange={props.handleWriting}></textarea>
+          <textarea value={props.scrawl} onChange={props.handleWriting}></textarea><br/>
           <input type="submit" onClick={props.advanceButton} value="Next Week"/>
         </form>
       </div>
