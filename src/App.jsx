@@ -17,28 +17,31 @@ const App = () => {
   let advanceButton = (e) => {
     e.preventDefault();
 
-    //update journal
-    console.log(card);
-    if (week >= 1) {
-      let newEntry = {
-        week: week,
-        event: card,
-        log: scrawl
-      }
-      updateJournal([...journal, newEntry]);
-      updateScrawl('');
-    }
-
-    //change weeks, draw new card
-    if (week > 4) {
-      changeWeek(0);
-      updateDeck(deckBuilder());
-      updateJournal([]);
+    if (!scrawl && week >= 1 && week <= 4) {
+      alert('Write in the journal!');
     } else {
-      changeWeek(week + 1);
-      updateDeck(deck.slice(0, deck.length - 1))
+      //update journal
+      if (week >= 1) {
+        let newEntry = {
+          week: week,
+          event: card,
+          log: scrawl
+        }
+        updateJournal([...journal, newEntry]);
+        updateScrawl('');
+      }
+
+      //change weeks, draw new card
+      if (week > 4) {
+        changeWeek(0);
+        updateDeck(deckBuilder());
+        updateJournal([]);
+      } else {
+        changeWeek(week + 1);
+        updateDeck(deck.slice(0, deck.length - 1))
+      }
+      updateCard(deck[deck.length - 1]);
     }
-    updateCard(deck[deck.length - 1]);
   }
 
   //event handlers

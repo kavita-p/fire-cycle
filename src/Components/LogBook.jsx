@@ -1,13 +1,14 @@
+import {suits} from '../utils/cardText.js';
+
 const LogBook = (props) => {
   if (props.week < 1) {
     return (<input type="submit" onClick={props.advanceButton} value="Begin"/>);
   } else if (props.week > 4) {
     return (<div>
       {props.journal.map(entry => {
-        console.log(entry);
         return (
           <div key = {entry.week}>
-            Week {entry.week}: {entry.event.rank} of {entry.event.suit}<br/>
+            Week {entry.week}: {entry.event.rank} of {suits[entry.event.suit]}<br/>
             Entry: {entry.log}<br/>
           </div>
         )}
@@ -18,7 +19,10 @@ const LogBook = (props) => {
     return (
       <div>
         <form>
-          <textarea value={props.scrawl} onChange={props.handleWriting}></textarea><br/>
+          <textarea
+            value={props.scrawl}
+            onChange={props.handleWriting}></textarea>
+          <br/>
           <input type="submit" onClick={props.advanceButton} value="Next Week"/>
         </form>
       </div>
