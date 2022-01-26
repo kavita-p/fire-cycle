@@ -19,13 +19,15 @@ const App = () => {
 
     //update journal
     console.log(card);
-    let newEntry = {
-      week: week,
-      event: card,
-      log: scrawl
+    if (week >= 1) {
+      let newEntry = {
+        week: week,
+        event: card,
+        log: scrawl
+      }
+      updateJournal([...journal, newEntry]);
+      updateScrawl('');
     }
-    updateJournal([...journal, newEntry]);
-    updateScrawl('');
 
     //change weeks, draw new card
     if (week > 4) {
