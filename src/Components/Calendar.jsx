@@ -10,7 +10,12 @@ const Calendar = (props) => {
       <p>There's no arguing with Grandmother Owl. Better get to writing.</p>
     </div>);
   } else if (props.week > 4) {
-    return null;
+    return (<div>
+      <p>The wheel turns. Year comes after year. Eventually, the people conscripted from your village return, though not all of them, and no one knows how long they'll stay.</p>
+      <p>The survivors look different. There's a haggardness to them. It's been a long, long year for them — and maybe for you, too. Maybe you look into the shadow behind their eyes and recognize it.</p>
+      <p>But you've kept the log. And when they come to hear you read it, you see smiles on many of their faces. They may have been forced from this place, but thanks to you, they haven't been severed from it.</p>
+      <p>They jostle into each other and murmur and chuckle and sigh and smile as you begin to read...</p>
+    </div>);
   } else {
     return (
       <div className="calendar">
