@@ -9,7 +9,7 @@ const LogBook = (props) => {
         return (
           <div key = {entry.week}>
             Week {entry.week}: {entry.event.rank} of {suits[entry.event.suit]}<br/>
-            Entry: {entry.log}<br/>
+            Entry: {entry.log}<br/> {/*markdown on page goes somewhere here i think*/}
           </div>
         )}
       )}
