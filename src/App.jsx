@@ -11,7 +11,7 @@ const App = () => {
   const [week, changeWeek] = useState(0);
   const [deck, updateDeck] = useState(deckBuilder());
   const [card, updateCard] = useState(deck[deck.length - 1]);
-  const [scale, setScale] = useState(4);
+  const [scale, setScale] = useState(12);
 
   //seasonal: 4 weeks (demo)
   //monthly: 12 weeks
@@ -82,6 +82,10 @@ const App = () => {
     .then(updateFileUrl(''))
   }
 
+  let handleScale = (e) => {
+    setScale(e.target.value);
+  }
+
   return (
     <div className="App">
       <a style={{display: "none"}}
@@ -101,6 +105,7 @@ const App = () => {
         advanceButton={advanceButton}
         handleWriting = {handleWriting}
         handleDownload = {handleDownload}
+        handleScale = {handleScale}
       />
     </div>
   );

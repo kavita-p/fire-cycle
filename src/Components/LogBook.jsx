@@ -3,17 +3,18 @@ import ReactMarkdown from 'react-markdown';
 
 const LogBook = (props) => {
   if (props.week < 1) {
-    return (<input type="submit" onClick={props.advanceButton} value="Begin"/>);
-  } else if (props.week > 4) {
     return (<div>
-      {/* {props.journal.map(entry => {
-        return (
-          <div key = {entry.week}>
-            Week {entry.week}: {entry.event.rank} of {suits[entry.event.suit]}<br/>
-            Entry: {entry.log}<br/>
-          </div>
-        )}
-      )} */}
+      <select value={props.scale} onChange={props.handleScale}>
+        <option value={12}>Monthly</option>
+        <option value= {24}>Twice a month</option>
+        <option value={52}>Every week</option>
+        <option value={4}>Seasonally (demo)</option>
+      </select><br/>
+      <input type="submit" onClick={props.advanceButton} value="Begin"/>
+    </div>
+    );
+  } else if (props.week > props.scale) {
+    return (<div>
       <ReactMarkdown children = {markdownEngine(props.journal, props.scale)}/>
       <input type="submit" onClick={props.advanceButton} value="Reset"/>
       <button onClick={props.handleDownload} value="Download">Download</button>
@@ -23,6 +24,7 @@ const LogBook = (props) => {
       <div>
         <form>
           <textarea
+            placeholder='Write here. Markdown valid!'
             value={props.scrawl}
             onChange={props.handleWriting}></textarea>
           <br/>
