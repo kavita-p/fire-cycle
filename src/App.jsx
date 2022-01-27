@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Calendar from './Components/Calendar.jsx';
 import LogBook from './Components/LogBook.jsx';
 import deckBuilder from './utils/deckBuilder.js'
@@ -62,20 +62,30 @@ const App = () => {
     //create filename
     const month = new Date().toLocaleString('default', { month: 'short' });
     const day = new Date().getDay();
+    const year = new Date().getFullYear();
     updateDownloadDate(`${day}-${month}`);
 
-    const blob = new Blob([journal], {type: 'text/plain'});
-    // const obj = {hello: 'world'};
-    // const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
+
+    let file =
+    `# FIRE CYCLE
+## A year in the peaks.
+${day} ${month}. ${year}
+`
+    ;
+    journal.forEach(entry => {
+      file += `### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
+      file += '\n';
+      file += entry.log;
+      file += '\n';
+    })
+
+    const blob = new Blob([file], {type: 'text/plain'});
     const fileLoc = URL.createObjectURL(blob);
     Promise.resolve()
     .then (() => updateFileUrl(fileLoc))
     .then(() => enactDownload.click())
     .then(URL.revokeObjectURL(fileUrl))
     .then(updateFileUrl(''))
-
-    // updateFileUrl(fileLoc);
-
   }
 
   return (
