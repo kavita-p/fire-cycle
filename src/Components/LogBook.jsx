@@ -14,6 +14,7 @@ const LogBook = (props) => {
         )}
       )}
       <input type="submit" onClick={props.advanceButton} value="Reset"/>
+      <button onClick={props.handleDownload} value="Download">Download</button>
     </div>)
   } else {
     return (

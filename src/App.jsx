@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Calendar from './Components/Calendar.jsx';
 import LogBook from './Components/LogBook.jsx';
 import deckBuilder from './utils/deckBuilder.js'
@@ -13,6 +13,10 @@ const App = () => {
 
   const [scrawl, updateScrawl] = useState('');
   const [journal, updateJournal] = useState([]);
+
+  //download
+  const [fileUrl, updateFileUrl] = useState('blank');
+  const [downloadDate, updateDownloadDate] = useState('');
 
   let advanceButton = (e) => {
     e.preventDefault();
@@ -50,9 +54,32 @@ const App = () => {
     updateScrawl(e.target.value);
   }
 
+  let enactDownload;
+
+  let handleDownload = (e) => {
+    e.preventDefault();
+    //create filename
+    const month = new Date().toLocaleString('default', { month: 'short' });
+    const day = new Date().getDay();
+    updateDownloadDate(`${day}-${month}`);
+
+    // const blob = new Blob();
+    const obj = {hello: 'world'};
+    const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
+    const fileLoc = URL.createObjectURL(blob);
+    updateFileUrl(fileLoc);
+    enactDownload.click();
+    URL.revokeObjectURL(fileUrl);
+    updateFileUrl('');
+  }
 
   return (
     <div className="App">
+      <a style={{display: "none"}}
+        download = {`fire-cycle-${downloadDate}.md`}
+        href={fileUrl}
+        ref={e => enactDownload = e}
+        >download it</a>
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
       <Calendar week = {week} card = {card} />
@@ -63,6 +90,7 @@ const App = () => {
         card = {card}
         advanceButton={advanceButton}
         handleWriting = {handleWriting}
+        handleDownload = {handleDownload}
       />
     </div>
   );
