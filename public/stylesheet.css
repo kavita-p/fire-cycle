@@ -75,8 +75,11 @@ body {
   flex-direction: column;
 }
 
+#root {
+  align-self: flex-start;
+}
+
 h1 {
-  align-self: center;
   font-size: 400%;
   line-height: 1.5;
   text-align: center;
@@ -93,6 +96,8 @@ h2 {
 p {
   margin-bottom: 2%;
   font-size: 110%;
+  text-align: left;
+  margin-left: 2%;
 }
 
 strong {
@@ -100,5 +105,23 @@ strong {
 }
 
 em {
-  font-style: italic;
+  font-family: JFSans-italic;
+}
+
+.calendar {
+  line-height: 125%;
+  font-size: 125%;
+}
+
+.event {
+  line-height: 200%;
+  font-size: 200%;
+  font-family: JFSans-italic;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.btn {
+  margin: auto;
+  justify-content: center;
 }

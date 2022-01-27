@@ -23,7 +23,7 @@ export const
     '8': 'an event which reminds you of your childhood, for good or ill',
     '9': 'a fragmented event, whose consequences will be felt the most years down the line',
     '10': 'a stunning event, that catches everyone by surprise',
-    'Jack': 'an event that is more than it appears at first glance',
+    'Jack': 'an event with unforeseen repercussions',
     'Queen': 'an event which inspires both awe and fear',
     'King': 'an event caused by the actions of the king, for good or ill'
   },

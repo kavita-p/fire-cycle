@@ -19,9 +19,11 @@ const Calendar = (props) => {
     </div>);
   } else {
     return (
-      <div className="calendar">
-        {`Week ${props.week}`}<br/>
+      <div>
+        <div className="calendar">
+        Week <strong>{props.week}</strong><br/>
         <span className='season'>Season of {seasons(props.week, props.scale)}</span>
+        </div>
         <EventCard card = {props.card} />
       </div>
     );
