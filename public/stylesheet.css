@@ -77,6 +77,8 @@ body {
 
 #root {
   align-self: flex-start;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 h1 {
@@ -97,7 +99,6 @@ p {
   margin-bottom: 2%;
   font-size: 110%;
   text-align: left;
-  margin-left: 2%;
 }
 
 strong {
@@ -106,6 +107,16 @@ strong {
 
 em {
   font-family: JFSans-italic;
+}
+
+h3 {
+  line-height: 125%;
+  font-size: 150%;
+}
+
+h4 {
+  font-size: 110%;
+  line-height: 110%;
 }
 
 .calendar {
