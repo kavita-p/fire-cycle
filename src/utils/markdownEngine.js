@@ -13,6 +13,7 @@ ${day} ${month}., ${year}
 
   journal.forEach(entry => {
     if (entry.week === 1 || seasons(entry.week, scale) !== seasons(entry.week - 1, scale)) {
+      console.log(entry.week, scale);
       file += `### ${seasons(entry.week, scale)}`;
       file += '\n';
     }

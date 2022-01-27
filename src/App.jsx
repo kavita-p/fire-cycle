@@ -71,24 +71,6 @@ const App = () => {
     const day = new Date().getDay();
     updateDownloadDate(`${day}-${month}`);
 
-
-//     let file =
-//     `# FIRE CYCLE
-// ## A year in the peaks.
-// ${day} ${month}. ${year}
-// `
-//     ;
-//     journal.forEach(entry => {
-//       if (entry.week === 1 || seasons(entry.week, scale) !== seasons(entry.week - 1, scale)) {
-//         file += `### ${seasons(entry.week, scale)}`;
-//         file += '\n';
-//       }
-//       file += `#### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
-//       file += '\n';
-//       file += entry.log;
-//       file += '\n';
-//     })
-
     const file = markdownEngine(journal, scale);
 
     const blob = new Blob([file], {type: 'text/plain'});
@@ -107,14 +89,15 @@ const App = () => {
         href={fileUrl}
         ref={e => setDownloadEvent(e)}
         >download it</a>
-      <h1>Fire Cycle</h1>
-      <h2>A year in the peaks.</h2>
+      {week > scale ? null : (<div><h1>Fire Cycle</h1>
+      <h2>A year in the peaks.</h2></div>)}
       <Calendar week = {week} card = {card} scale={scale}/>
       <LogBook
         week = {week}
         scrawl = {scrawl}
         journal = {journal}
         card = {card}
+        scale = {scale}
         advanceButton={advanceButton}
         handleWriting = {handleWriting}
         handleDownload = {handleDownload}

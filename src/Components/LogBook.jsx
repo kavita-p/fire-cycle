@@ -1,18 +1,20 @@
-import {suits} from '../utils/cardText.js';
+import markdownEngine from '../utils/markdownEngine.js'
+import ReactMarkdown from 'react-markdown';
 
 const LogBook = (props) => {
   if (props.week < 1) {
     return (<input type="submit" onClick={props.advanceButton} value="Begin"/>);
   } else if (props.week > 4) {
     return (<div>
-      {props.journal.map(entry => {
+      {/* {props.journal.map(entry => {
         return (
           <div key = {entry.week}>
             Week {entry.week}: {entry.event.rank} of {suits[entry.event.suit]}<br/>
-            Entry: {entry.log}<br/> {/*markdown on page goes somewhere here i think*/}
+            Entry: {entry.log}<br/>
           </div>
         )}
-      )}
+      )} */}
+      <ReactMarkdown children = {markdownEngine(props.journal, props.scale)}/>
       <input type="submit" onClick={props.advanceButton} value="Reset"/>
       <button onClick={props.handleDownload} value="Download">Download</button>
     </div>)
