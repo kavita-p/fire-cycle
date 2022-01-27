@@ -17,6 +17,7 @@ const App = () => {
   //download
   const [fileUrl, updateFileUrl] = useState('blank');
   const [downloadDate, updateDownloadDate] = useState('');
+  const [enactDownload, setDownloadEvent] = useState({});
 
   let advanceButton = (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const App = () => {
     updateScrawl(e.target.value);
   }
 
-  let enactDownload;
+  // let enactDownload;
 
   let handleDownload = (e) => {
     e.preventDefault();
@@ -63,14 +64,18 @@ const App = () => {
     const day = new Date().getDay();
     updateDownloadDate(`${day}-${month}`);
 
-    // const blob = new Blob();
-    const obj = {hello: 'world'};
-    const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
+    const blob = new Blob([journal], {type: 'text/plain'});
+    // const obj = {hello: 'world'};
+    // const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
     const fileLoc = URL.createObjectURL(blob);
-    updateFileUrl(fileLoc);
-    enactDownload.click();
-    URL.revokeObjectURL(fileUrl);
-    updateFileUrl('');
+    Promise.resolve()
+    .then (() => updateFileUrl(fileLoc))
+    .then(() => enactDownload.click())
+    .then(URL.revokeObjectURL(fileUrl))
+    .then(updateFileUrl(''))
+
+    // updateFileUrl(fileLoc);
+
   }
 
   return (
@@ -78,7 +83,7 @@ const App = () => {
       <a style={{display: "none"}}
         download = {`fire-cycle-${downloadDate}.md`}
         href={fileUrl}
-        ref={e => enactDownload = e}
+        ref={e => setDownloadEvent(e)}
         >download it</a>
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
