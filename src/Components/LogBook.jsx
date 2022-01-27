@@ -24,6 +24,8 @@ const LogBook = (props) => {
       <div className="interactives">
         <form>
           <textarea
+            cols={100}
+            rows={20}
             placeholder='Write here. Markdown valid!'
             value={props.scrawl}
             onChange={props.handleWriting}></textarea>
