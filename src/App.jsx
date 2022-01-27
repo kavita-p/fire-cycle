@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Calendar from './Components/Calendar.jsx';
 import LogBook from './Components/LogBook.jsx';
 import deckBuilder from './utils/deckBuilder.js'
-import {seasons} from './utils/cardText.js';
+import markdownEngine from './utils/markdownEngine.js';
 
 
 const App = () => {
@@ -69,26 +69,27 @@ const App = () => {
     //create filename
     const month = new Date().toLocaleString('default', { month: 'short' });
     const day = new Date().getDay();
-    const year = new Date().getFullYear();
     updateDownloadDate(`${day}-${month}`);
 
 
-    let file =
-    `# FIRE CYCLE
-## A year in the peaks.
-${day} ${month}. ${year}
-`
-    ;
-    journal.forEach(entry => {
-      if (entry.week === 1 || seasons(entry.week, scale) !== seasons(entry.week - 1, scale)) {
-        file += `### ${seasons(entry.week, scale)}`;
-        file += '\n';
-      }
-      file += `#### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
-      file += '\n';
-      file += entry.log;
-      file += '\n';
-    })
+//     let file =
+//     `# FIRE CYCLE
+// ## A year in the peaks.
+// ${day} ${month}. ${year}
+// `
+//     ;
+//     journal.forEach(entry => {
+//       if (entry.week === 1 || seasons(entry.week, scale) !== seasons(entry.week - 1, scale)) {
+//         file += `### ${seasons(entry.week, scale)}`;
+//         file += '\n';
+//       }
+//       file += `#### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
+//       file += '\n';
+//       file += entry.log;
+//       file += '\n';
+//     })
+
+    const file = markdownEngine(journal, scale);
 
     const blob = new Blob([file], {type: 'text/plain'});
     const fileLoc = URL.createObjectURL(blob);
