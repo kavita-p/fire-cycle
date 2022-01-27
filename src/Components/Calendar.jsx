@@ -1,4 +1,5 @@
 import EventCard from './EventCard.jsx';
+import {seasons} from '../utils/cardText.js';
 
 const Calendar = (props) => {
   if (props.week === 0) {
@@ -9,7 +10,7 @@ const Calendar = (props) => {
       <p>"It's you this year," she announced suddenly. "It's you who'll keep the log. Often or not; that much is up to you. But you'll keep it."</p>
       <p>There's no arguing with Grandmother Owl. Better get to writing.</p>
     </div>);
-  } else if (props.week > 4) {
+  } else if (props.week > props.scale) {
     return (<div className="ending text">
       <p>The wheel turns. Year comes after year. Eventually, the people conscripted from your village return, though not all of them, and no one knows how long they'll stay.</p>
       <p>The survivors look different. There's a haggardness to them. It's been a long, long year for them — and maybe for you, too. Maybe you look into the shadow behind their eyes and recognize it.</p>
@@ -19,7 +20,8 @@ const Calendar = (props) => {
   } else {
     return (
       <div className="calendar">
-        {`Week ${props.week}`}
+        {`Week ${props.week}`}<br/>
+        <span className='season'>Season of {seasons(props.week, props.scale)}</span>
         <EventCard card = {props.card} />
       </div>
     );

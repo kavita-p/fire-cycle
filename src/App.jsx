@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Calendar from './Components/Calendar.jsx';
 import LogBook from './Components/LogBook.jsx';
 import deckBuilder from './utils/deckBuilder.js'
+import {seasons} from './utils/cardText.js';
 
 
 const App = () => {
@@ -10,6 +11,14 @@ const App = () => {
   const [week, changeWeek] = useState(0);
   const [deck, updateDeck] = useState(deckBuilder());
   const [card, updateCard] = useState(deck[deck.length - 1]);
+  const [scale, setScale] = useState(4);
+
+  //seasonal: 4 weeks (demo)
+  //monthly: 12 weeks
+  //twice monthly: 24 weeks
+  //weekly
+
+  //Ashwhite, Sparks, Bonfire, Cinder
 
   const [scrawl, updateScrawl] = useState('');
   const [journal, updateJournal] = useState([]);
@@ -22,7 +31,7 @@ const App = () => {
   let advanceButton = (e) => {
     e.preventDefault();
 
-    if (!scrawl && week >= 1 && week <= 4) {
+    if (!scrawl && week >= 1 && week <= scale) {
       alert('Write in the journal!');
     } else {
       //update journal
@@ -37,7 +46,7 @@ const App = () => {
       }
 
       //change weeks, draw new card
-      if (week > 4) {
+      if (week > scale) {
         changeWeek(0);
         updateDeck(deckBuilder());
         updateJournal([]);
@@ -55,8 +64,6 @@ const App = () => {
     updateScrawl(e.target.value);
   }
 
-  // let enactDownload;
-
   let handleDownload = (e) => {
     e.preventDefault();
     //create filename
@@ -73,7 +80,11 @@ ${day} ${month}. ${year}
 `
     ;
     journal.forEach(entry => {
-      file += `### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
+      if (entry.week === 1 || seasons(entry.week, scale) !== seasons(entry.week - 1, scale)) {
+        file += `### ${seasons(entry.week, scale)}`;
+        file += '\n';
+      }
+      file += `#### Week ${entry.week}: The ${entry.event.rank} of ${entry.event.suit}`;
       file += '\n';
       file += entry.log;
       file += '\n';
@@ -97,7 +108,7 @@ ${day} ${month}. ${year}
         >download it</a>
       <h1>Fire Cycle</h1>
       <h2>A year in the peaks.</h2>
-      <Calendar week = {week} card = {card} />
+      <Calendar week = {week} card = {card} scale={scale}/>
       <LogBook
         week = {week}
         scrawl = {scrawl}

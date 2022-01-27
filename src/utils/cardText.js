@@ -26,4 +26,15 @@ export const
     'Jack': 'an event that is more than it appears at first glance',
     'Queen': 'an event which inspires both awe and fear',
     'King': 'an event caused by the actions of the king, for good or ill'
+  },
+  seasons = function (week, scale) {
+    if (week/scale <= 0.25) {
+      return 'Ashwhite';
+    } else if (week/scale <= 0.5) {
+      return 'Sparks';
+    } else if (week/scale <= 0.75) {
+      return 'Bonfires';
+    } else {
+      return 'Cinders';
+    }
   }
