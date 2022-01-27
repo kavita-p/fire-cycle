@@ -81,6 +81,10 @@ body {
   margin-right: 2%;
 }
 
+#App {
+  display: flex;
+}
+
 h1 {
   font-size: 400%;
   line-height: 1.5;
@@ -130,6 +134,12 @@ h4 {
   font-family: JFSans-italic;
   margin-top: 1%;
   margin-bottom: 1%;
+}
+
+.interactives {
+  margin: 0 auto;
+  align-self: center;
+  text-align: center;
 }
 
 .btn {

@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 
 const LogBook = (props) => {
   if (props.week < 1) {
-    return (<div>
+    return (<div className="interactives">
       <select value={props.scale} onChange={props.handleScale}>
         <option value={12}>Monthly</option>
         <option value= {24}>Twice a month</option>
@@ -14,14 +14,14 @@ const LogBook = (props) => {
     </div>
     );
   } else if (props.week > props.scale) {
-    return (<div>
+    return (<div className="interactives">
       <ReactMarkdown children = {markdownEngine(props.journal, props.scale)}/>
       <input className="btn" type="submit" onClick={props.advanceButton} value="Reset"/>
       <button onClick={props.handleDownload} value="Download">Download</button>
     </div>)
   } else {
     return (
-      <div>
+      <div className="interactives">
         <form>
           <textarea
             placeholder='Write here. Markdown valid!'
