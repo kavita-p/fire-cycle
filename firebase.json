@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "fire-cycle-journaling",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
